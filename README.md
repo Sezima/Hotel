@@ -3,7 +3,7 @@ First Real Group Project
 
 ***
 
-##Description
+## Description
 
 *Welcome to our hotel website! We are glad to welcome you to the pages of our website. Our hotel provides a wide range of services for the comfortable stay of our guests.
 
