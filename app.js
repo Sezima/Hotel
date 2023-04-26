@@ -5,7 +5,7 @@ const Hotel = require("./models/Hotel")
 
 const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
-const mongodbURI = "mongodb+srv://Alishan:alishan@cluster0.ic7ifil.mongodb.net/test";
+const mongodbURI = "mongodb+srv://Alishan:alishan@cluster0.ic7ifil.mongodb.net/?retryWrites=true&w=majority";
 mongoose.connect(mongodbURI, { useNewUrlParser: true, useUnifiedTopology: true,})
     .then(() => console.log("connected to db"))
     .catch((err) => console.log("error from db is :", err))
