@@ -1,9 +1,6 @@
 const express = require("express")
 const app = express()
 
-const db = require("./database")
-const knex = require("./knex")
-
 const Hotel = require("./models/Hotel")
 
 const cookieParser = require("cookie-parser");
