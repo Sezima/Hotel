@@ -13,6 +13,14 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap&family=Roboto:wght@500&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&family=Manrope:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div id="hotel-cities" data-cities="<%= JSON.stringify(cities) %>"></div>
@@ -78,10 +86,7 @@
             style="font-family: 'Montserrat', sans-serif"
             name="rating"
           >
-            <option
-              value=""
-              style="font-family: 'Montserrat', sans-serif; padding-left: 15px"
-            >
+            <option value="" style="font-family: 'Montserrat', sans-serif">
               Any
             </option>
             <option value="1">⭐</option>
@@ -124,8 +129,69 @@
       </div>
     </div>
 
+    <div class="chooseUs"><h1>Why you should choose us?</h1></div>
+
     <div id="about" class="about">
-      <h1>Why you should choose us?</h1>
+      <div class="arguments">
+        <div class="argument">
+          <div class="icon">1</div>
+          <h3 class="title-argument">Provide the best choice of room</h3>
+          <h5 class="text-argument">
+            Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
+            sint. Velit officia consequat.
+          </h5>
+        </div>
+        <div class="argument">
+          <div class="icon">2</div>
+          <h3 class="title-argument">Low price with Best Quality</h3>
+          <h5 class="text-argument">
+            Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
+            sint. Velit officia consequat.
+          </h5>
+        </div>
+        <div class="argument">
+          <div class="icon">3</div>
+          <h3 class="title-argument">Restaurant service</h3>
+          <h5 class="text-argument">
+            Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
+            sint. Velit officia consequat.
+          </h5>
+        </div>
+      </div>
+      <div class="messi-container">
+        <div class="bg-photo">
+          <div class="front-photo"></div>
+<div class="clients-container">
+          <div class="clients-rate-card">
+            <div class="client-image" style="background-image: url('images/cody.png');"></div>
+            <div class="client-name">
+              Cody Fisher <br />
+              <span class="client-rating">gives rating:</span>
+              <span id="rating-color">4.5</span>
+            </div>
+            </div>
+
+            <div class="clients-rate-card">
+              <div class="client-image" style="background-image: url('images/albert.png');"></div>
+              <div class="client-name">
+                Albert Flores <br />
+                <span class="client-rating">gives rating:</span>
+                <span id="rating-color">4.5</span>
+              </div>
+              </div>
+
+              <div class="clients-rate-card">
+                <div class="client-image" style="background-image: url('images/lana.png');"></div>
+                <div class="client-name">
+                  Devon Lane <br />
+                  <span class="client-rating">gives rating:</span>
+                  <span id="rating-color">4.5</span>
+                </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div id="customers" class="customers">
