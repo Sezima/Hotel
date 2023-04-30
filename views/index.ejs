@@ -5,106 +5,127 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="index.css" />
     <script src="script.js" defer></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap&family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap&family=Roboto:wght@500&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div id="hotel-cities" data-cities="<%= JSON.stringify(cities) %>"></div>
 
     <header class="header" id="home">
-
       <nav>
-          <div id="logo">
-              <a href="" class="header__logo"><img src="/images/logo_hotels.png"class= "logo"></a>
+        <div id="logo">
+          <a href="" class="header__logo"
+            ><img src="/images/logo_hotels.png" class="logo"
+          /></a>
+        </div>
+
+        <div id="links">
+          <a href="#home" class="nav__link">Home</a>
+          <a href="#hotel" class="nav__link">Hotel</a>
+          <a href="#about" class="nav__link">About</a>
+          <a href="#contact" class="nav__link">Contact</a>
+
+          <select name="language" class="language">
+            <option value="en">EN</option>
+            <option value="ru">RU</option>
+          </select>
+
+          <% if (user != null) { %>
+          <a href="logout" class="nav__link" style="color: #975b02"
+            ><b>Log Out</b></a
+          >
+          <div class="user_pic">
+            <p><%= user.username[0].toUpperCase()%></p>
           </div>
-
-          <div id="links">
-              <a href="#home" class="nav__link">Home</a>
-              <a href="#hotel" class="nav__link">Hotel</a>
-              <a href="#about" class="nav__link">About</a>
-              <a href="#contact" class="nav__link">Contact</a>
-              
-              <select name="language" class="language">
-                  <option value="en">EN</option>
-                  <option value="ru">RU</option>
-              </select>
-
-              <% if (user != null) {  %>
-              <a href="logout" class="nav__link" style="color:#975B02;"><b>Log Out</b></a>
-              <div class="user_pic">
-                  <p><%= user.username[0].toUpperCase()%></p>
-              </div>
-                  <% }else{  %>
-                      <a href="signup" class="nav__link" style="color:black;"><b>Sign Up</b></a>
-                      <a href="signin" class="nav__link" style="color: #975B02;"><b>Log In</b></a>
-                      <% } %>
-
-          </div>
+          <% }else{ %>
+          <a href="signup" class="nav__link" style="color: black"
+            ><b>Sign Up</b></a
+          >
+          <a href="signin" class="nav__link" style="color: #975b02"
+            ><b>Log In</b></a
+          >
+          <% } %>
+        </div>
       </nav>
 
       <div class="background_img"></div>
-  </header>
+    </header>
 
     <div class="hotels" id="hotel">
-      
       <div class="filterDiv">
-
-        <form action="/#section2" id="section2" class="searchForm" method="GET"  >
-            
-            <div class="inputDiv">
-              <input type="text" id="searchInput" name="location" autocomplete="off" value="<%= searchValues.location %>" placeholder="Enter a destination">
+        <form action="/#section2" id="section2" class="searchForm" method="GET">
+          <div class="inputDiv">
+            <input
+              type="text"
+              id="searchInput"
+              name="location"
+              autocomplete="off"
+              value="<%= searchValues.location %>"
+              placeholder="Enter a destination"
+            />
             <ul class="list"></ul>
-            </div>
+          </div>
 
-            <select class="starSelect" id="userSelect" style="font-family: 'Montserrat', sans-serif;" name="rating">
-              <option value="" style="font-family: 'Montserrat', sans-serif;" >Any</option>
-              <option value="1">⭐</option>
-              <option value="2">⭐⭐</option>
-              <option value="3">⭐⭐⭐</option>
-              <option value="4">⭐⭐⭐⭐</option> 
-              <option value="5">⭐⭐⭐⭐⭐</option>
-            </select>
+          <select
+            class="starSelect"
+            id="userSelect"
+            style="font-family: 'Montserrat', sans-serif"
+            name="rating"
+          >
+            <option
+              value=""
+              style="font-family: 'Montserrat', sans-serif; padding-left: 15px"
+            >
+              Any
+            </option>
+            <option value="1">⭐</option>
+            <option value="2">⭐⭐</option>
+            <option value="3">⭐⭐⭐</option>
+            <option value="4">⭐⭐⭐⭐</option>
+            <option value="5">⭐⭐⭐⭐⭐</option>
+          </select>
 
-            <button type="submit">SEARCH</button>
+          <button type="submit">SEARCH</button>
         </form>
-
       </div>
       <h1></h1>
       <h1 class="title">
-        Rating of the most popular<br>hotels in Kyrgyzstan that deserve attention
-      </h1>  
-      
-      <div class="hotel-cards">
-       
-        <%  hotels.forEach(hotel => {  %>
-          
-          <div class="hotel-card"> 
+        Rating of the most popular<br />hotels in Kyrgyzstan that deserve
+        attention
+      </h1>
 
-            <img src="/images/hotel_photo.png">
-            
-            <div class="card-details">
-              <div>
+      <div class="hotel-cards">
+        <% hotels.forEach(hotel => { %>
+
+        <div class="hotel-card">
+          <img src="/images/hotel_photo.png" />
+
+          <div class="card-details">
+            <div>
               <h3><%= hotel.name %></h3>
-              <h5 style="color: #5E5E5E	"><%= hotel.location %></h5>
+              <h5 style="color: #5e5e5e"><%= hotel.location %></h5>
               <div class="stars">
-                <% for (let a = 0; a < hotel.rating; a ++) {  %>
-                    <img src="/images/star.png">
-                  <% } %>
+                <% for (let a = 0; a < hotel.rating; a ++) { %>
+                <img src="/images/star.png" />
+                <% } %>
               </div>
             </div>
             <button id="seeBtn">See</button>
           </div>
-          </div>   
+        </div>
 
-          <% }) %>
+        <% }) %>
       </div>
     </div>
 
     <div id="about" class="about">
-      <h1 >Why you should choose us?</h1>
+      <h1>Why you should choose us?</h1>
     </div>
 
     <div id="customers" class="customers">
@@ -114,6 +135,5 @@
     <div id="contact" class="footer">
       <h1>GET IN TOUCH</h1>
     </div>
-
   </body>
 </html>
