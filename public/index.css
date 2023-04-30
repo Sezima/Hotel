@@ -1,26 +1,26 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
 }
-body{
-    background-size: cover;
-    max-width: 100vw;
+body {
+  background-size: cover;
+  max-width: 100vw;
 }
 
 /* ALIZHAN'S HEADER */
 
-header{
+header {
   height: 100vh;
   /* width: 100vw; */
   outline: 1px solid black;
 }
 
-.header-logo img{
-    width: 100%;
+.header-logo img {
+  width: 100%;
 }
-nav{
+nav {
   height: 13%;
   max-width: 100vw;
   display: flex;
@@ -34,40 +34,40 @@ nav{
   width: 100%;
 }
 
-#links{
+#links {
   width: 60%;
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
 
-.nav__link{
+.nav__link {
   font-weight: 500;
   font-size: 20px;
   text-decoration: none;
   color: black;
-  font-family: 'Montserrat', sans-serif;
-  transition: 0.3s
+  font-family: "Montserrat", sans-serif;
+  transition: 0.3s;
 }
 
 .nav__link:hover {
-  color: #975B02;
+  color: #975b02;
 }
 
-.logo{
+.logo {
   width: 80px;
   height: 80px;
 }
 
-.account__page{
-width: 60px;
+.account__page {
+  width: 60px;
 }
 
-.user_pic{
+.user_pic {
   position: relative;
   display: flex;
-  justify-content: center; 
-  align-items: center; 
+  justify-content: center;
+  align-items: center;
   outline: 1px solid black;
   border-radius: 50%;
   background-color: lightblue;
@@ -77,12 +77,12 @@ width: 60px;
 }
 
 .user_pic p {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   /* position: absolute; */
   font-size: 30px;
 }
 
-.language{
+.language {
   /* border: none; */
   font-size: 20px;
   padding: 10px;
@@ -96,7 +96,7 @@ width: 60px;
 .hotengine-shop-select-language-val { width:39px; display:block; margin:0px; padding: 0px 17px; vertical-align:top; cursor:pointer; margin-left:-3px; text-align:center; }
 .hotengine-shop-select-language-val:hover {background:#e8e8e8;} */
 
-.background_img{
+.background_img {
   height: 87%;
   background-image: url("/images/background__home__page.png");
   background-size: cover;
@@ -105,7 +105,7 @@ width: 60px;
 
 /* HOTELS FILTRATION */
 
-.hotels{
+.hotels {
   width: 100%;
   height: 100%;
   position: relative;
@@ -127,7 +127,7 @@ width: 60px;
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-around ;
+  justify-content: space-around;
 }
 
 .searchForm .inputDiv {
@@ -136,14 +136,14 @@ width: 60px;
 }
 
 .searchForm input {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 500;
   width: 100%;
-  padding: 15px 10px;
+  padding: 22px 10px;
   border: none;
   border-radius: 5px 5px 0 0;
   background-color: #ffffff;
-  font-size: 16px;
+  font-size: 22px;
 }
 
 input:focus {
@@ -161,7 +161,7 @@ input:focus {
 }
 
 .list-items {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   padding: 10px 5px;
 }
 
@@ -180,7 +180,7 @@ input:focus {
 .searchForm button[type="submit"] {
   height: 70%;
   cursor: pointer;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 500;
   width: 13%;
   border-radius: 5px;
@@ -190,13 +190,13 @@ input:focus {
 }
 
 .title {
-text-align: center;
-margin-bottom: 30px;
+  text-align: center;
+  margin-bottom: 30px;
 }
 
-.hotel-cards{
+.hotel-cards {
   display: grid;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(3, 1fr);
   height: 630px;
   justify-content: space-between;
   grid-template-columns: repeat(3, 1fr);
@@ -216,32 +216,31 @@ margin-bottom: 30px;
   border-radius: 5px;
 }
 
-  
 .hotel-card {
   width: 300px;
   outline: 1px solid black;
   border-radius: 3px;
   height: 270px;
 }
-.card-details{
+.card-details {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-inline: 8px;
   padding-bottom: 10px;
 }
-.stars{
+.stars {
   display: flex;
   width: 20px;
 }
-.stars img{
+.stars img {
   width: 100%;
 }
 .hotel-card img {
   width: 100%;
 }
-#seeBtn{
-  background-color: #FF7500;
+#seeBtn {
+  background-color: #ff7500;
   border-radius: 5px;
   border: none;
   color: white;
@@ -251,7 +250,7 @@ margin-bottom: 30px;
   cursor: pointer;
 }
 
-.about{
+.about {
   margin-top: 50px;
   height: 100vh;
   width: 100%;
@@ -269,7 +268,7 @@ margin-bottom: 30px;
   transform: translate(-50%, -50%);
 }
 
-.customers{
+.customers {
   height: 100vh;
   width: 100%;
   /* background-color: lightcoral; */
@@ -286,7 +285,7 @@ margin-bottom: 30px;
   transform: translate(-50%, -50%);
 }
 
-.footer{
+.footer {
   height: 50vh;
   width: 100%;
   /* background-color: lightcoral; */
