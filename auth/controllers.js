@@ -13,7 +13,6 @@ const createToken = (id) => {
 
 const handleErrors = (err) => {
   console.log(err)
-  console.log(err.message, err.code);
   let errors = { username: "", email: "", password: "" };
 
   // incorrect email
