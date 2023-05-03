@@ -16,6 +16,28 @@ mongoose.connect(mongodbURI, { useNewUrlParser: true, useUnifiedTopology: true,}
 
 const {checkUser} = require("./auth/middleware")
 const authRoutes = require("./routes/authRoutes")
+const swaggerJSDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+
+const options = {
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'HOTEL APP',
+      version: '1.0.0',
+    //   description: 'Your API description',
+    },
+    servers: [
+        {
+            url : "http://localhost:3000/"
+        }
+    ]
+  },
+  apis: ['./routes/authRoutes.js'],
+};
+
+const swaggerSpec = swaggerJSDoc(options);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // ENDPOINTS 
 app.use(express.json())
@@ -24,8 +46,8 @@ app.set("view engine", "ejs")
 app.use(cookieParser());
 app.use(express.urlencoded({extended : false}))
 
+
 app.get("/", checkUser, async (req,res) => {
-    
     let where = {}
     if(req.query.location != null && req.query.location != ""){
         where.location = req.query.location
@@ -33,6 +55,7 @@ app.get("/", checkUser, async (req,res) => {
     if(req.query.rating != null && req.query.rating){
         where.rating = req.query.rating
     }
+    
     const hotels = await Hotel.find(where)
     const uniqueCities = await Hotel.find().distinct("location")
 
@@ -46,14 +69,15 @@ app.get("/new-hotel", (req, res) => {
 })
 
 app.post("/hotel", upload.single("hotel_img"),async(req, res) => {
-    // console.log("req.file", req.file)
+    console.log("req.file", req.file)
     const hotel = new Hotel ({
         name : req.body.name,
         location : req.body.location,
         rating : req.body.rating,
         price_per_night : req.body.price_per_night,
-        hotel_img : req.file[0].buffer
+        hotel_img : req.file.buffer
     })
+    console.log(hotel)
     res.send("File")
     await hotel.save()
 })
