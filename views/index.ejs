@@ -11,8 +11,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap&family=Roboto:wght@500&display=swap" rel="stylesheet">
   </head>
+  <div id="hotel-cities" data-cities="<%= JSON.stringify(cities) %>"></div>
   <body>
-    <div id="hotel-cities" data-cities="<%= JSON.stringify(cities) %>"></div>
 
     <header class="header" id="home">
 
@@ -33,13 +33,13 @@
               </select>
 
               <% if (user != null) {  %>
-              <a href="logout" class="nav__link" style="color:#975B02;"><b>Log Out</b></a>
+              <a href="/auth/logout" class="nav__link" style="color:#975B02;"><b>Log Out</b></a>
               <div class="user_pic">
                   <p><%= user.username[0].toUpperCase()%></p>
               </div>
                   <% }else{  %>
-                      <a href="signup" class="nav__link" style="color:black;"><b>Sign Up</b></a>
-                      <a href="login" class="nav__link" style="color: #975B02;"><b>Log In</b></a>
+                      <a href="auth/signup" class="nav__link" style="color:black;"><b>Sign Up</b></a>
+                      <a href="auth/login" class="nav__link" style="color: #975B02;"><b>Log In</b></a>
                       <% } %>
 
           </div>
@@ -60,7 +60,7 @@
             </div>
 
             <select class="starSelect" id="userSelect" style="font-family: 'Montserrat', sans-serif;" name="rating">
-              <option value="" style="font-family: 'Montserrat', sans-serif;" >Any</option>
+              <option value="" style="font-family: 'Montserrat', sans-serif;">Any</option>
               <option value="1">⭐</option>
               <option value="2">⭐⭐</option>
               <option value="3">⭐⭐⭐</option>
@@ -95,7 +95,7 @@
                   <% } %>
               </div>
             </div>
-            <button id="seeBtn">See</button>
+            <a href="/hotel/<%= hotel._id %>"><button id="seeBtn">See</button></a>
           </div>
           </div>   
 
@@ -116,4 +116,65 @@
     </div>
 
   </body>
+  <script>
+  var hotelCities = JSON.parse(document.getElementById('hotel-cities').getAttribute('data-cities'));
+  let input = document.getElementById("searchInput");
+
+
+  const mySelect = document.getElementById('userSelect');
+  mySelect.addEventListener('change', function() {
+    sessionStorage.setItem('selectedOption', this.value);
+  });
+  
+  const selectedOption = sessionStorage.getItem('selectedOption');
+  if (selectedOption) {
+    mySelect.querySelector(`[value="${selectedOption}"]`).selected = true;
+  }
+
+
+  function handleClick (){
+    removeElements()
+    for(let i of hotelCities){
+        let listItem = document.createElement("li");
+        listItem.classList.add("list-items");
+        listItem.style.cursor = "pointer";
+        listItem.setAttribute("onclick", "displayNames('" + i + "')");
+  
+        let word = `${i} `;
+        listItem.innerHTML = word;
+        document.querySelector(".list").appendChild(listItem);  
+    }
+
+  }
+
+  input.addEventListener("click", handleClick)
+
+  input.addEventListener("keyup", (e) => {
+    removeElements();
+    for (let i of hotelCities) {
+      if (i.toLowerCase().startsWith(input.value.toLowerCase()) && input.value != "") {
+        let listItem = document.createElement("li");
+        listItem.classList.add("list-items");
+        listItem.style.cursor = "pointer";
+        listItem.setAttribute("onclick", "displayNames('" + i + "')");
+
+        let word = "<b>" + i.substr(0, input.value.length) + "</b>";
+        word += i.substr(input.value.length);
+
+        listItem.innerHTML = word;
+        document.querySelector(".list").appendChild(listItem);
+      }
+    }
+  });
+  function displayNames(value) {
+    input.value = value;
+    removeElements();
+  }
+  function removeElements() {
+    let items = document.querySelectorAll(".list-items");
+    items.forEach((item) => {
+      item.remove();
+    });
+  }
+  </script>
 </html>

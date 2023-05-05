@@ -13,8 +13,6 @@ body{
 
 header{
   height: 100vh;
-  /* width: 100vw; */
-  outline: 1px solid black;
 }
 
 .header-logo img{
@@ -78,29 +76,18 @@ width: 60px;
 
 .user_pic p {
   font-family: 'Roboto', sans-serif;
-  /* position: absolute; */
   font-size: 30px;
 }
 
 .language{
-  /* border: none; */
   font-size: 20px;
   padding: 10px;
 }
-/* 
-.hotengine-shop-select-language-box { display:inline-block; width:71px; height:30px; overflow:hidden; border:none; background:#fff; line-height:30px; position:relative; top: 15px; z-index:1000; }
-.hotengine-shop-select-language { display:inline-block; width:71px; text-align:center;  }
-.hotengine-shop-select-language-values { display:inline-block; width:69px; vertical-align: top; position:absolute; background:rgba(255, 255, 255, 0.80); left:2px; }
-.hotengine-shop-select-language-box:hover{ overflow:visible;}
-.hotengine-shop-select-language-values:hover .hotengine-shop-select-language-val{ position:relative; }
-.hotengine-shop-select-language-val { width:39px; display:block; margin:0px; padding: 0px 17px; vertical-align:top; cursor:pointer; margin-left:-3px; text-align:center; }
-.hotengine-shop-select-language-val:hover {background:#e8e8e8;} */
 
 .background_img{
   height: 87%;
   background-image: url("/images/background__home__page.png");
   background-size: cover;
-  outline: 1px solid black;
 }
 
 /* HOTELS FILTRATION */

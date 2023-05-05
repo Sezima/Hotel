@@ -122,7 +122,11 @@ router.post("/login", async (req, res) => {
 
 router.get("/logout", (req, res) => {
   res.cookie("jwt", "", { maxAge: 1 });
-  res.redirect("/");
+  if(req.query.dest){
+    res.redirect("/" + req.query.dest)
+  }else{
+    res.redirect("/");
+  }
 });
 
 module.exports = router;

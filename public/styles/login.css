@@ -126,23 +126,6 @@ body {
     border-radius: 5px;
 }
 
-.allow__circle {
-    position: relative;
-    top: 20px;
-    width: 100%;
-    margin-bottom: 50px;
-}
-.allow__circle div{
-    display: flex;
-    margin-bottom: 5px;
-}
-
-.allow__circle input {
-    margin-right: 5px;
-    height: 20px;
-    width: 20px;
-}
-
 .input__txt {
     font-family: 'Montserrat', sans-serif;
     padding: 5px;
@@ -153,12 +136,11 @@ body {
     justify-content: center;
     display: flex;
     align-items: center;
-    /* position: relative; */
     padding: 10px;
+    margin-top: 30px;
 }
 
 .hr__bar p{
-    /* position: absolute; */
     font-size: 30px;
 }
 

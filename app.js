@@ -1,11 +1,6 @@
 const express = require("express")
 const app = express()
 
-const multer = require("multer")
-
-const upload = multer()
-const Hotel = require("./models/Hotel")
-
 const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 const mongodbURI = "mongodb+srv://Alishan:alishan@hotel-project.sav1uvb.mongodb.net/?retryWrites=true&w=majority";
@@ -14,8 +9,10 @@ mongoose.connect(mongodbURI, { useNewUrlParser: true, useUnifiedTopology: true,}
     .catch((err) => console.log("error from db is :", err))
 ;
 
+const Hotel = require("./models/Hotel")
 const {checkUser} = require("./auth/middleware")
 const authRoutes = require("./routes/authRoutes")
+const adminRoutes = require("./routes/adminRoutes")
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 
@@ -25,7 +22,6 @@ const options = {
     info: {
       title: 'HOTEL APP',
       version: '1.0.0',
-    //   description: 'Your API description',
     },
     servers: [
         {
@@ -46,6 +42,8 @@ app.set("view engine", "ejs")
 app.use(cookieParser());
 app.use(express.urlencoded({extended : false}))
 
+app.use("/auth", authRoutes)
+app.use("/admin", adminRoutes)
 
 app.get("/", checkUser, async (req,res) => {
     let where = {}
@@ -62,29 +60,15 @@ app.get("/", checkUser, async (req,res) => {
     res.render("index", {hotels : hotels, searchValues : req.query, cities: uniqueCities})
 })
 
-app.use(authRoutes)
-
-app.get("/new-hotel", (req, res) => {
-    res.render("new-hotel")
-})
-
-app.post("/hotel", upload.single("hotel_img"),async(req, res) => {
-    console.log("req.file", req.file)
-    const hotel = new Hotel ({
-        name : req.body.name,
-        location : req.body.location,
-        rating : req.body.rating,
-        price_per_night : req.body.price_per_night,
-        hotel_img : req.file.buffer
-    })
-    console.log(hotel)
-    res.send("File")
-    await hotel.save()
-})
-
-app.get("/hotel1", async(req, res)=> {
-    const hotel = await Hotel.findById("644e1925b830b714a2af1186")
-    res.render("view", {hotel : hotel})
+app.get("/hotel/:id", checkUser, async(req, res) => {
+    try{
+        const hotel = await Hotel.findById(req.params.id)
+        res.render("hotel", {hotel})    
+    }catch(err){
+        console.log("error", err)
+        console.log("Error Finding Hotel")
+        res.redirect("/")
+    }
 })
 
 app.listen(3000, () => {
