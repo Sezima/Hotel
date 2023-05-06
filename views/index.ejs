@@ -5,176 +5,547 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="styles/index.css">
-    <script src="script.js" defer></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap&family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap&family=Roboto:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&family=Manrope:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="index.css" />
   </head>
-  <div id="hotel-cities" data-cities="<%= JSON.stringify(cities) %>"></div>
   <body>
+    <div id="hotel-cities" data-cities="<%= JSON.stringify(cities) %>"></div>
 
     <header class="header" id="home">
-
       <nav>
-          <div id="logo">
-              <a href="" class="header__logo"><img src="/images/logo_hotels.png"class= "logo"></a>
+        <div id="logo">
+          <a href="" class="header__logo"
+            ><img src="/images/logo_hotels.png" class="logo"
+          /></a>
+        </div>
+
+        <div id="links">
+          <a href="#home" class="nav__link">Home</a>
+          <a href="#hotel" class="nav__link">Hotel</a>
+          <a href="#about" class="nav__link">About</a>
+          <a href="#contact" class="nav__link">Contact</a>
+
+          <select name="language" class="language">
+            <option value="en">EN</option>
+            <option value="ru">RU</option>
+          </select>
+
+          <% if (user != null) { %>
+          <a href="logout" class="nav__link" style="color: #975b02"
+            ><b>Log Out</b></a
+          >
+          <div class="user_pic">
+            <p><%= user.username[0].toUpperCase()%></p>
           </div>
-
-          <div id="links">
-              <a href="#home" class="nav__link">Home</a>
-              <a href="#hotel" class="nav__link">Hotel</a>
-              <a href="#about" class="nav__link">About</a>
-              <a href="#contact" class="nav__link">Contact</a>
-              
-              <select name="language" class="language">
-                  <option value="en">EN</option>
-                  <option value="ru">RU</option>
-              </select>
-
-              <% if (user != null) {  %>
-              <a href="/auth/logout" class="nav__link" style="color:#975B02;"><b>Log Out</b></a>
-              <div class="user_pic">
-                  <p><%= user.username[0].toUpperCase()%></p>
-              </div>
-                  <% }else{  %>
-                      <a href="auth/signup" class="nav__link" style="color:black;"><b>Sign Up</b></a>
-                      <a href="auth/login" class="nav__link" style="color: #975B02;"><b>Log In</b></a>
-                      <% } %>
-
-          </div>
+          <% }else{ %>
+          <a href="signup" class="nav__link" style="color: black"
+            ><b>Sign Up</b></a
+          >
+          <a href="signin" class="nav__link" style="color: #975b02"
+            ><b>Log In</b></a
+          >
+          <% } %>
+        </div>
       </nav>
 
       <div class="background_img"></div>
-  </header>
+    </header>
 
     <div class="hotels" id="hotel">
-      
       <div class="filterDiv">
-
-        <form action="/#section2" id="section2" class="searchForm" method="GET"  >
-            
-            <div class="inputDiv">
-              <input type="text" id="searchInput" name="location" autocomplete="off" value="<%= searchValues.location %>" placeholder="Enter a destination">
+        <form action="/#section2" id="section2" class="searchForm" method="GET">
+          <div class="inputDiv">
+            <input
+              type="text"
+              id="searchInput"
+              name="location"
+              autocomplete="off"
+              value="<%= searchValues.location %>"
+              placeholder="Enter a destination"
+            />
             <ul class="list"></ul>
-            </div>
+          </div>
 
-            <select class="starSelect" id="userSelect" style="font-family: 'Montserrat', sans-serif;" name="rating">
-              <option value="" style="font-family: 'Montserrat', sans-serif;">Any</option>
-              <option value="1">⭐</option>
-              <option value="2">⭐⭐</option>
-              <option value="3">⭐⭐⭐</option>
-              <option value="4">⭐⭐⭐⭐</option> 
-              <option value="5">⭐⭐⭐⭐⭐</option>
-            </select>
+          <select
+            class="starSelect"
+            id="userSelect"
+            style="font-family: 'Montserrat', sans-serif"
+            name="rating"
+          >
+            <option value="" style="font-family: 'Montserrat', sans-serif">
+              Any
+            </option>
+            <option value="1">⭐</option>
+            <option value="2">⭐⭐</option>
+            <option value="3">⭐⭐⭐</option>
+            <option value="4">⭐⭐⭐⭐</option>
+            <option value="5">⭐⭐⭐⭐⭐</option>
+          </select>
 
-            <button type="submit">SEARCH</button>
+          <button type="submit">SEARCH</button>
         </form>
-
       </div>
       <h1></h1>
       <h1 class="title">
-        Rating of the most popular<br>hotels in Kyrgyzstan that deserve attention
-      </h1>  
-      
-      <div class="hotel-cards">
-       
-        <%  hotels.forEach(hotel => {  %>
-          
-          <div class="hotel-card"> 
+        Rating of the most popular<br />hotels in Kyrgyzstan that deserve
+        attention
+      </h1>
 
-            <img src="<%= hotel.hotel_img_path %>">
-            
-            <div class="card-details">
-              <div>
+      <div class="hotel-cards">
+        <% hotels.forEach(hotel => { %>
+        <div class="hotel-card">
+          <img src="/images/hotel_photo.png" />
+          <div class="card-details">
+            <div>
               <h3><%= hotel.name %></h3>
-              <h5 style="color: #5E5E5E	"><%= hotel.location %></h5>
+              <h5 style="color: #5e5e5e"><%= hotel.location %></h5>
               <div class="stars">
-                <% for (let a = 0; a < hotel.rating; a ++) {  %>
-                    <img src="/images/star.png">
-                  <% } %>
+                <% for (let a = 0; a < hotel.rating; a ++) { %>
+                <img src="/images/star.png" />
+                <% } %>
               </div>
             </div>
-            <a href="hotel/<%= hotel._id %>"><button id="seeBtn">See</button></a>
+            <button id="seeBtn">See</button>
           </div>
-          </div>   
+        </div>
+        <% }) %>
+      </div>
+    </div>
+    <div class="about-page" id="about">
+      <div class="chooseUs"><h1>Why you should choose us?</h1></div>
 
-          <% }) %>
+      <div class="about">
+        <div class="arguments">
+          <div class="argument">
+            <div class="icon">1</div>
+            <h3 class="title-argument">Provide the best choice of room</h3>
+            <h5 class="text-argument">
+              Amet minim mollit non deserunt ullamco est sit aliqua dolor do
+              amet sint. Velit officia consequat.
+            </h5>
+          </div>
+          <div class="argument">
+            <div class="icon">2</div>
+            <h3 class="title-argument">Low price with Best Quality</h3>
+            <h5 class="text-argument">
+              Amet minim mollit non deserunt ullamco est sit aliqua dolor do
+              amet sint. Velit officia consequat.
+            </h5>
+          </div>
+          <div class="argument">
+            <div class="icon">3</div>
+            <h3 class="title-argument">Restaurant service</h3>
+            <h5 class="text-argument">
+              Amet minim mollit non deserunt ullamco est sit aliqua dolor do
+              amet sint. Velit officia consequat.
+            </h5>
+          </div>
+        </div>
+        <div class="messi-container">
+          <div class="bg-photo">
+            <div class="front-photo"></div>
+            <div class="clients-container">
+              <div class="clients-rate-card">
+                <div
+                  class="client-image"
+                  style="background-image: url('images/cody.png')"
+                ></div>
+                <div class="client-name">
+                  Cody Fisher <br />
+                  <span class="client-rating">gives rating:</span>
+                  <span id="rating-color">4.5</span>
+                </div>
+              </div>
+
+              <div class="clients-rate-card">
+                <div
+                  class="client-image"
+                  style="background-image: url('images/albert.png')"
+                ></div>
+                <div class="client-name">
+                  Albert Flores <br />
+                  <span class="client-rating">gives rating:</span>
+                  <span id="rating-color">4.5</span>
+                </div>
+              </div>
+
+              <div class="clients-rate-card">
+                <div
+                  class="client-image"
+                  style="background-image: url('images/lana.png')"
+                ></div>
+                <div class="client-name">
+                  Devon Lane <br />
+                  <span class="client-rating">gives rating:</span>
+                  <span id="rating-color">4.5</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div id="about" class="about">
-      <h1 >Why you should choose us?</h1>
+    <div id="feedback" class="customers-title">
+      <h1>Our Customers Feedback</h1>
+      <h2>Don't take our word for it. Trust our customers</h2>
     </div>
+    <div class="customers" id="customers">
+      <section>
+        <div class="swiper mySwiper container">
+          <div class="swiper-wrapper content">
+            <div class="swiper-slide card">
+              <div class="card-content">
+                <div class="img-n-rating">
+                  <div class="image">
+                    <img src="/images/black-woman.png" alt="" />
+                  </div>
+                  <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star-half-stroke"></i>
+                    <i class="far fa-star"></i>
+                  </div>
+                </div>
 
-    <div id="customers" class="customers">
-      <h1>Our Customer Feedback</h1>
+                <div class="name-profession">
+                  <span class="name">Floyd Miles</span>
+                  <span class="profession"
+                    >Amet minim mollit non deserunt ullamco est sit aliqua dolor
+                    do amet sint. Velit officia consequat duis enim velit
+                    mollit. Exercitation veniam consequat sunt nostrud amet.
+                    Amet minim mollit non deserunt ullamco est sit aliqua dolor
+                    do amet sint.</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide card">
+              <div class="card-content">
+                <div class="img-n-rating">
+                  <div class="image">
+                    <img src="/images/red-head.png" alt="" />
+                  </div>
+                  <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star-half-stroke"></i>
+                    <i class="far fa-star"></i>
+                  </div>
+                </div>
+
+                <div class="name-profession">
+                  <span class="name">Floyd Miles</span>
+                  <span class="profession"
+                    >Amet minim mollit non deserunt ullamco est sit aliqua dolor
+                    do amet sint. Velit officia consequat duis enim velit
+                    mollit. Exercitation veniam consequat sunt nostrud amet.
+                    Amet minim mollit non deserunt ullamco est sit aliqua dolor
+                    do amet sint.</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide card">
+              <div class="card-content">
+                <div class="img-n-rating">
+                  <div class="image">
+                    <img src="/images/asian-woman.png" alt="" />
+                  </div>
+                  <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star-half-stroke"></i>
+                    <i class="far fa-star"></i>
+                  </div>
+                </div>
+
+                <div class="name-profession">
+                  <span class="name">Floyd Miles</span>
+                  <span class="profession"
+                    >Amet minim mollit non deserunt ullamco est sit aliqua dolor
+                    do amet sint. Velit officia consequat duis enim velit
+                    mollit. Exercitation veniam consequat sunt nostrud amet.
+                    Amet minim mollit non deserunt ullamco est sit aliqua dolor
+                    do amet sint.</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide card">
+              <div class="card-content">
+                <div class="img-n-rating">
+                  <div class="image">
+                    <img src="/images/black-woman.png" alt="" />
+                  </div>
+                  <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star-half-stroke"></i>
+                    <i class="far fa-star"></i>
+                  </div>
+                </div>
+
+                <div class="name-profession">
+                  <span class="name">Floyd Miles</span>
+                  <span class="profession"
+                    >Amet minim mollit non deserunt ullamco est sit aliqua dolor
+                    do amet sint. Velit officia consequat duis enim velit
+                    mollit. Exercitation veniam consequat sunt nostrud amet.
+                    Amet minim mollit non deserunt ullamco est sit aliqua dolor
+                    do amet sint.</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide card">
+              <div class="card-content">
+                <div class="img-n-rating">
+                  <div class="image">
+                    <img src="/images/red-head.png" alt="" />
+                  </div>
+                  <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star-half-stroke"></i>
+                    <i class="far fa-star"></i>
+                  </div>
+                </div>
+
+                <div class="name-profession">
+                  <span class="name">Floyd Miles</span>
+                  <span class="profession"
+                    >Amet minim mollit non deserunt ullamco est sit aliqua dolor
+                    do amet sint. Velit officia consequat duis enim velit
+                    mollit. Exercitation veniam consequat sunt nostrud amet.
+                    Amet minim mollit non deserunt ullamco est sit aliqua dolor
+                    do amet sint.</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide card">
+              <div class="card-content">
+                <div class="img-n-rating">
+                  <div class="image">
+                    <img src="/images/asian-woman.png" alt="" />
+                  </div>
+                  <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star-half-stroke"></i>
+                    <i class="far fa-star"></i>
+                  </div>
+                </div>
+
+                <div class="name-profession">
+                  <span class="name">Floyd Miles</span>
+                  <span class="profession"
+                    >Amet minim mollit non deserunt ullamco est sit aliqua dolor
+                    do amet sint. Velit officia consequat duis enim velit
+                    mollit. Exercitation veniam consequat sunt nostrud amet.
+                    Amet minim mollit non deserunt ullamco est sit aliqua dolor
+                    do amet sint.</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide card">
+              <div class="card-content">
+                <div class="img-n-rating">
+                  <div class="image">
+                    <img src="/images/black-woman.png" alt="" />
+                  </div>
+                  <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star-half-stroke"></i>
+                    <i class="far fa-star"></i>
+                  </div>
+                </div>
+
+                <div class="name-profession">
+                  <span class="name">Floyd Miles</span>
+                  <span class="profession"
+                    >Amet minim mollit non deserunt ullamco est sit aliqua dolor
+                    do amet sint. Velit officia consequat duis enim velit
+                    mollit. Exercitation veniam consequat sunt nostrud amet.
+                    Amet minim mollit non deserunt ullamco est sit aliqua dolor
+                    do amet sint.</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide card">
+              <div class="card-content">
+                <div class="img-n-rating">
+                  <div class="image">
+                    <img src="/images/red-head.png" alt="" />
+                  </div>
+                  <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star-half-stroke"></i>
+                    <i class="far fa-star"></i>
+                  </div>
+                </div>
+
+                <div class="name-profession">
+                  <span class="name">Floyd Miles</span>
+                  <span class="profession"
+                    >Amet minim mollit non deserunt ullamco est sit aliqua dolor
+                    do amet sint. Velit officia consequat duis enim velit
+                    mollit. Exercitation veniam consequat sunt nostrud amet.
+                    Amet minim mollit non deserunt ullamco est sit aliqua dolor
+                    do amet sint.</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide card">
+              <div class="card-content">
+                <div class="img-n-rating">
+                  <div class="image">
+                    <img src="/images/asian-woman.png" alt="" />
+                  </div>
+                  <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star-half-stroke"></i>
+                    <i class="far fa-star"></i>
+                  </div>
+                </div>
+
+                <div class="name-profession">
+                  <span class="name">Floyd Miles</span>
+                  <span class="profession"
+                    >Amet minim mollit non deserunt ullamco est sit aliqua dolor
+                    do amet sint. Velit officia consequat duis enim velit
+                    mollit. Exercitation veniam consequat sunt nostrud amet.
+                    Amet minim mollit non deserunt ullamco est sit aliqua dolor
+                    do amet sint.</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+      </section>
     </div>
 
     <div id="contact" class="footer">
-      <h1>GET IN TOUCH</h1>
+      <div class="footer-container">
+        <div class="links">
+          <h2 class="q">Quick link</h2>
+          <h3 class="nav-item">
+            <a href="#home" class="nav-link" style="text-decoration: none"
+              >Home</a
+            >
+          </h3>
+          <h3 class="nav-item">
+            <a href="#hotel" class="nav-link" style="text-decoration: none"
+              >Hotels</a
+            >
+          </h3>
+          <h3 class="nav-item">
+            <a href="#about" class="nav-link" style="text-decoration: none"
+              >About us</a
+            >
+          </h3>
+          <h3 class="nav-item">
+            <a href="#feedback" class="nav-link" style="text-decoration: none"
+              >Feedback</a
+            >
+          </h3>
+        </div>
+        <div class="subscribe">
+          <div class="touch-me">
+            <div><h1>GET IN TOUCH</h1></div>
+            <div>
+              <h3>
+                Amet minim mollit non deserunt ullamco est sit aliqua dolor do
+                amet sint.
+              </h3>
+            </div>
+          </div>
+          <div class="subscribe-div">
+            <input
+              id="newsletter-input"
+              type="text"
+              class="form-control"
+              placeholder="Enter email"
+              style="padding-left: 30px; background-color: #121212"
+            />
+            <button class="sub-btn" type="button">Subscribe</button>
+          </div>
+        </div>
+        <div class="useful-links">
+          <h2 class="useful">Useful</h2>
+          <h3 class="nav-item">
+            <a href="#" class="nav-link" style="text-decoration: none"
+              >Privacy policy</a
+            >
+          </h3>
+          <h3 class="nav-item">
+            <a href="#" class="nav-link" style="text-decoration: none">Legal</a>
+          </h3>
+          <h3 class="nav-item">
+            <a href="#" class="nav-link" style="text-decoration: none">FAQ</a>
+          </h3>
+          <h3 class="nav-item">
+            <a href="#" class="nav-link" style="text-decoration: none">Blogs</a>
+          </h3>
+        </div>
+      </div>
+      <div class="tails">
+        <div class="empty-tail"></div>
+        <div class="text-tail">
+          <h3 class="copywrites" style="text-align: center; padding: 30px">
+            Copywrites goes to - Breakdance.com
+          </h3>
+        </div>
+        <div class="icons-tail">
+          <i class="fa-brands fa-twitter"></i>
+          <i class="fa-brands fa-youtube"></i>
+          <i class="fa-brands fa-facebook"></i>
+        </div>
+      </div>
     </div>
-
   </body>
-  <script>
-  var hotelCities = JSON.parse(document.getElementById('hotel-cities').getAttribute('data-cities'));
-  let input = document.getElementById("searchInput");
-
-
-  const mySelect = document.getElementById('userSelect');
-  mySelect.addEventListener('change', function() {
-    sessionStorage.setItem('selectedOption', this.value);
-  });
-  
-  const selectedOption = sessionStorage.getItem('selectedOption');
-  if (selectedOption) {
-    mySelect.querySelector(`[value="${selectedOption}"]`).selected = true;
-  }
-
-
-  function handleClick (){
-    removeElements()
-    for(let i of hotelCities){
-        let listItem = document.createElement("li");
-        listItem.classList.add("list-items");
-        listItem.style.cursor = "pointer";
-        listItem.setAttribute("onclick", "displayNames('" + i + "')");
-  
-        let word = `${i} `;
-        listItem.innerHTML = word;
-        document.querySelector(".list").appendChild(listItem);  
-    }
-
-  }
-
-  input.addEventListener("click", handleClick)
-
-  input.addEventListener("keyup", (e) => {
-    removeElements();
-    for (let i of hotelCities) {
-      if (i.toLowerCase().startsWith(input.value.toLowerCase()) && input.value != "") {
-        let listItem = document.createElement("li");
-        listItem.classList.add("list-items");
-        listItem.style.cursor = "pointer";
-        listItem.setAttribute("onclick", "displayNames('" + i + "')");
-
-        let word = "<b>" + i.substr(0, input.value.length) + "</b>";
-        word += i.substr(input.value.length);
-
-        listItem.innerHTML = word;
-        document.querySelector(".list").appendChild(listItem);
-      }
-    }
-  });
-  function displayNames(value) {
-    input.value = value;
-    removeElements();
-  }
-  function removeElements() {
-    let items = document.querySelectorAll(".list-items");
-    items.forEach((item) => {
-      item.remove();
-    });
-  }
-  </script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script src="script.js"></script>
 </html>
