@@ -27,7 +27,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="/styles/index.css" />
   </head>
   <body>
     <div id="hotel-cities" data-cities="<%= JSON.stringify(cities) %>"></div>
@@ -35,7 +35,7 @@
     <header class="header" id="home">
       <nav>
         <div id="logo">
-          <a href="" class="header__logo"
+          <a href="/" class="header__logo"
             ><img src="/images/logo_hotels.png" class="logo"
           /></a>
         </div>
@@ -59,10 +59,10 @@
             <p><%= user.username[0].toUpperCase()%></p>
           </div>
           <% }else{ %>
-          <a href="signup" class="nav__link" style="color: black"
+          <a href="/auth/signup" class="nav__link" style="color: black"
             ><b>Sign Up</b></a
           >
-          <a href="signin" class="nav__link" style="color: #975b02"
+          <a href="/auth/login" class="nav__link" style="color: #975b02"
             ><b>Log In</b></a
           >
           <% } %>
@@ -115,7 +115,7 @@
       <div class="hotel-cards">
         <% hotels.forEach(hotel => { %>
         <div class="hotel-card">
-          <img src="/images/hotel_photo.png" />
+          <img src="<%= hotel.hotel_img_path %>" />
           <div class="card-details">
             <div>
               <h3><%= hotel.name %></h3>
@@ -126,7 +126,7 @@
                 <% } %>
               </div>
             </div>
-            <button id="seeBtn">See</button>
+            <a href="/hotel/<%= hotel.id %>"><button id="seeBtn">See</button></a>
           </div>
         </div>
         <% }) %>
