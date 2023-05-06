@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+      rel="stylesheet"
+    />
+    <title>Document</title>
+    <style>
+      /* styles for the modal overlay */
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+      }
+
+      /* styles for the modal content */
+      .modal-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        z-index: 2;
+      }
+
+      /* styles for the form and status message */
+      /* form,
+      #payment-status {
+        margin-bottom: 10px;
+      } */
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      label {
+        margin-top: 10px;
+        font-size: 18px;
+        font-weight: bold;
+        text-align: left;
+      }
+
+      input {
+        height: 30px;
+        width: 300px;
+        margin: 5px 0;
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+
+      button[type="submit"] {
+        height: 40px;
+        width: 150px;
+        margin-top: 20px;
+        background-color: #ff7500;
+        color: #fff;
+        font-size: 20px;
+        font-weight: bold;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      #close-modal {
+        height: 40px;
+        width: 150px;
+        margin-top: 20px;
+        background-color: white;
+        color: #ff7500;
+        font-size: 20px;
+        font-weight: bold;
+        border: 1px solid #ff7500;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      * {
+        box-sizing: border-box;
+      }
+
+      button[type="submit"]:hover {
+        background-color: hsl(35, 100%, 70%);
+      }
+      .heading-text::before {
+        content: url(./img/Vector.png);
+        height: 5px;
+        width: 10px;
+        margin-right: 30px;
+        margin-bottom: 25px;
+      }
+      .heading-text {
+        display: flex;
+        justify-content: left;
+        align-items: center;
+      }
+      h3 {
+        color: #ff7500;
+        margin-right: 530px;
+        font-size: larger;
+      }
+      .red {
+        color: red;
+      }
+      .row-inputs {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        column-gap: 80px;
+      }
+
+      .cards {
+        font-size: 17px;
+        color: #ff7500;
+        margin-top: 7px;
+        margin-right: 130px;
+      }
+
+      .cards-img {
+        row-gap: 30px;
+        margin-right: 10px;
+      }
+
+      .row-wrapper {
+        background-color: rgba(255, 224, 197, 0.61);
+        display: flex;
+        flex-direction: row;
+        column-gap: 220px;
+      }
+      .card-number {
+        width: 100%;
+      }
+      .full-width {
+        width: 97%;
+      }
+      .description {
+        font-family: "Montserrat";
+        font-size: 10px;
+      }
+      .btns {
+        display: flex;
+        flex-direction: row;
+        column-gap: 50px;
+        margin-bottom: 20px;
+      }
+      #payment-status {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+        color: #ff7500;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="payment-modal" class="modal-overlay">
+      <div class="modal-content">
+        <div class="heading-text"><h3>Secure         Payment</h3></div>
+        <div class="row-wrapper">
+          <div class="cards">CREDIT /DEBIT CARD</div>
+          <div class="cards-img">
+            <img src="./img/visa 1.png" width="42px" height="30px" alt="" />
+            <img
+              src="./img/credit-card 1.png"
+              width="42px"
+              height="30px"
+              alt=""
+            />
+            <img
+              src="./img/american-express.png"
+              width="42px"
+              height="30px"
+              alt=""
+            />
+            <img src="./img/discover.png" width="42px" height="30px" alt="" />
+          </div>
+        </div>
+        <div id="payment-status">Payment status: pending</div>
+        <form action="/charge" method="post">
+          <div class="card-number">
+            <label for="card-number">
+              <span class="description"> Card Number </span>
+              <span class="red">*</span></label
+            >
+            <input
+              type="text"
+              id="card-number"
+              name="cardNumber"
+              placeholder="**** **** **** ****"
+              required
+              class="full-width"
+            />
+          </div>
+          <div class="row-inputs">
+            <div class="name">
+              <label for="card-name">
+                <span class="description"> Cardholder Name </span
+                ><span class="red">*</span></label
+              >
+              <input
+                type="text"
+                id="card-name"
+                name="cardName"
+                placeholder="John Doe"
+                required
+                class="name-width"
+              />
+            </div>
+            <div class="expiry">
+              <label for="card-expiry">
+                <span class="description"> Expiration Date </span
+                ><span class="red">*</span></label
+              >
+              <input
+                type="text"
+                id="card-expiry"
+                name="cardExpiry"
+                placeholder="MM / YY"
+                required
+              />
+            </div>
+            <div class="cvc">
+              <label for="card-cvc">
+                <span class="description"> CVC/CVV </span
+                ><span class="red">*</span></label
+              >
+              <input
+                type="text"
+                id="card-cvc"
+                name="cardCVC"
+                placeholder="***"
+                required
+              />
+            </div>
+            <div class="amount">
+              <label for="amount">
+                <span class="description"> Amount (in USD) </span
+                ><span class="red">*</span></label
+              >
+              <input
+                type="number"
+                id="amount"
+                name="amount"
+                min="1"
+                max="10000"
+                step="0.01"
+                required
+              />
+            </div>
+          </div>
+          <div class="btns">
+            <button id="close-modal">Go Back</button>
+            <button type="submit">Pay Now</button>
+        </form>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- button or link that opens the modal -->
+    <button id="open-modal">Pay Now</button>
+
+    <script>
+      // get the modal and its components
+      const modal = document.getElementById("payment-modal");
+      const openBtn = document.getElementById("open-modal");
+      const closeBtn = document.getElementById("close-modal");
+
+      // open the modal when the user clicks the open button/link
+      openBtn.addEventListener("click", function () {
+        modal.style.display = "block";
+      });
+
+      // close the modal when the user clicks the close button
+      closeBtn.addEventListener("click", function () {
+        modal.style.display = "none";
+      });
+      const form = document.querySelector("form");
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(form);
+        const response = await fetch("/charge", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            cardNumber: formData.get("cardNumber"),
+            cardExpiry: formData.get("cardExpiry"),
+            cardCVC: formData.get("cardCVC"),
+            cardName: formData.get("cardName"),
+            amount: formData.get("amount"),
+          }),
+        });
+        console.log("response :", response);
+        const data = await response.json();
+        console.log("data :", data);
+        if (data.status === "succeeded") {
+          const paymentStatus = document.querySelector("#payment-status");
+          paymentStatus.innerHTML = "Payment was successful!";
+        } else {
+          const paymentStatus = document.querySelector("#payment-status");
+          paymentStatus.innerHTML = "Payment failed. Please try again.";
+        }
+        console.log ("payment status :", paymentStatus)
+      });
+    </script>
+  </body>
+</html>
