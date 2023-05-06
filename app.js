@@ -54,7 +54,7 @@ app.get("/", checkUser, async (req,res) => {
         where.rating = req.query.rating
     }
     
-    const hotels = await Hotel.find(where)
+    const hotels = await Hotel.find(where).sort({rating : -1})
     const uniqueCities = await Hotel.find().distinct("location")
 
     res.render("index", {hotels : hotels, searchValues : req.query, cities: uniqueCities})

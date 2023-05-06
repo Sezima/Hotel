@@ -7,23 +7,23 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/admin/hotel" method="POST" enctype="multipart/form-data">
+    <form action="/admin/hotel/<%= hotel.id %>" method="POST" enctype="multipart/form-data">
         <div>
             <label for="name">Hotel Name: </label>
 
-            <input type="text" name="name" >    
+            <input type="text" value="<%= hotel.name %>" name="name" >    
         </div>
         <div>
             <label for="rating">Rating: </label>
-            <input type="number" name="rating" >    
+            <input type="number" name="rating"  value="<%= hotel.rating %>">    
         </div>
         <div>
             <label for="price_per_night">Price per night: </label>
-            <input type="number" name="price_per_night" >    
+            <input type="number" name="price_per_night" value="<%= hotel.price_per_night %>">    
         </div>
         <div>
             <label for="location">Location</label>
-            <input type="text" name="location" >    
+            <input type="text" name="location" value="<%= hotel.location %>">    
         </div>
         <div>
             <label for="hotel_img">Hotel Main Image: </label>

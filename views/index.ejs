@@ -83,7 +83,7 @@
           
           <div class="hotel-card"> 
 
-            <img src="/images/hotel_photo.png">
+            <img src="<%= hotel.hotel_img_path %>">
             
             <div class="card-details">
               <div>
@@ -95,7 +95,7 @@
                   <% } %>
               </div>
             </div>
-            <a href="/hotel/<%= hotel._id %>"><button id="seeBtn">See</button></a>
+            <a href="hotel/<%= hotel._id %>"><button id="seeBtn">See</button></a>
           </div>
           </div>   
 

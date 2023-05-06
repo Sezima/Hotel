@@ -19,15 +19,10 @@ const hotelSchema = new mongoose.Schema({
     type : Number,
     required : true
   },
-  
   hotel_img : {
     type : Buffer,
     required : true
   }
-
-  // price_per_night
-  // hotel_img
-  // about_hotel_img
 })
 
 hotelSchema.virtual("hotel_img_path").get(function () {
