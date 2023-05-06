@@ -253,7 +253,7 @@ input:focus {
   justify-content: space-between;
   align-items: start;
   padding-top: 20px;
-  height: 90vh;
+  height: 100vh;
   width: 100%;
   /* background-color: lightcoral; */
   /* position: relative; */
@@ -266,7 +266,7 @@ input:focus {
 
 .chooseUs h1 {
   padding-top: 50px;
-  padding-bottom: 50px;
+  padding-bottom: 10px;
   font-family: "Ubuntu", sans-serif;
   font-weight: 400;
   font-size: 38px;
@@ -388,6 +388,18 @@ input:focus {
   left: 180px;
 }
 
+.customers-section {
+  height: 90vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.customers-title {
+  padding-top: 30px;
+  margin-top: 50px;
+}
 .customers-title h1 {
   line-height: 1.5;
   text-align: center;
@@ -401,7 +413,7 @@ input:focus {
   font-weight: 500;
 }
 .customers {
-  height: 55vh;
+  /* height: 80vh; */
   width: 100%;
   display: flex;
   align-items: center;
