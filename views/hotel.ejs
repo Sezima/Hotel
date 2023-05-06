@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/styles/hotel.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap&family=Roboto:wght@500&display=swap" rel="stylesheet">
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+  </head>
+  <div id="user" data-user="<%= JSON.stringify(user) %>"></div>
+  <body>
+    <header class="header" id="home">
+
+      <nav>
+          <div id="logo">
+              <a href="/" class="header__logo"><img src="/images/logo_hotels.png" class= "logo"></a>
+          </div>
+
+          <div id="links">
+              <a href="#home" class="nav__link">Home</a>
+              <a href="#hotel" class="nav__link">Hotel</a>
+              <a href="#about" class="nav__link">About</a>
+              <a href="#contact" class="nav__link">Contact</a>
+              
+              <select name="language" class="language">
+                  <option value="en">EN</option>
+                  <option value="ru">RU</option>
+              </select>
+
+          <% if (user != null) {  %>
+            <a href="/auth/logout?dest=hotel/<%= hotel.id %>" class="nav__link" style="color:#975B02;"><b>Log Out</b></a>
+            <div class="user_pic">
+                <p><%= user.username[0].toUpperCase()%></p>
+            </div>
+                <% }else{  %>
+                    <a href="/auth/signup" class="nav__link" style="color:black;"><b>Sign Up</b></a>
+                    <a href="/auth/login" class="nav__link" style="color: #975B02;"><b>Log In</b></a>
+                    <% } %>
+          </div>
+      </nav>
+
+      <div class="background_img"></div>
+  </header>
+  <div class="hotels" id="hotel">
+      
+    <div class="filterDiv">
+
+      <form class="searchForm">
+          
+          <div class="roomsDiv">
+            <input type="text">
+          </div>
+
+          <div class="dateDiv">
+            <input type="text" name="daterange" readonly/>
+          </div>
+
+          <div class="priceDiv">
+            <div class="totalPrice">$ <span id="totalPriceVal"><%=hotel.price_per_night%></span></div>
+          </div>
+
+          <div class="btnDiv">
+            <button id="submitBtn">SUBMIT</button>
+          </div>
+      </form>
+
+    </div>
+  </div>
+
+</body>
+
+<script>
+var user = JSON.parse(document.getElementById('user').getAttribute('data-user'));
+const submitBtn = document.getElementById("submitBtn");
+
+let days = 0
+let rooms = 0
+
+let totalPrice = document.getElementById("totalPriceVal");
+let pricePerNight = parseInt(totalPrice.textContent);
+
+// buttonDone.addEventListener("click", () => {
+//   rooms = parseInt(counter1.textContent);
+
+//   let priceValue = Number(totalPrice.textContent)
+//   priceValue = 0
+    
+//   if(days == 0){
+//     for (let i = 0; i < rooms; i ++) {
+//       priceValue += pricePerNight
+//     }  
+//   }else{
+//     priceValue = rooms * pricePerNight * days
+//   }
+
+//   totalPrice.textContent = priceValue;
+
+// });
+
+
+let startDate 
+let endDate
+
+  $(function() {
+    var currentDate = moment();
+    var endDate = moment(currentDate).endOf('month');
+
+    $('input[name="daterange"]').daterangepicker({
+        opens: 'right',
+        startDate: moment(),
+        endDate: moment(),
+        locale: {
+          format : "ddd D MMM"
+        },
+    }, function(start, end, label) {
+        startDate = new Date (start.format('YYYY-MM-DD'))
+        endDate = new Date(end.format('YYYY-MM-DD'))
+
+        const difference = endDate.getTime() - startDate.getTime();
+
+        days = Math.round(difference / (1000 * 60 * 60 * 24));
+
+        let tempPrice = 0
+        if(rooms == 0){
+          for (let i = rooms; i < days; i ++){
+            tempPrice += pricePerNight
+          }  
+        }else{
+          tempPrice = rooms * pricePerNight * days
+        }
+
+        totalPrice.textContent = tempPrice
+    });
+  });
+
+submitBtn.addEventListener("click", function (e) {
+  e.preventDefault()
+  if(user){
+    alert("you can pay here")
+  }else{
+    alert("you have to be sign in first!")
+  }
+});
+
+</script>
+</html>

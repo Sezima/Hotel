@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Montserrat:ital,wght@0,400;1,300&family=Oswald:wght@400;500&family=Poppins:wght@200;300;400;500;700;800;900&family=Zen+Dots&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/signup.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header__container">
+        <a href="/"><img src="/images/reg__logo.png" class = "hotel__logo"></a>
+        <a href="/auth/login"><button class="btn">Login</button></a> 
+    </div>
+  </header>
+  <h1 class = title>JOIN US</h1>
+  <div class="all">
+        <form class="form" autocomplete="off">
+                <div class="inputDiv">
+                  <label for="username" class = "username"><p >Your name*</p></label>
+                  <input type="text" id="username" name="username" required placeholder="Insert Name">
+                  <p class="name error"></p>
+                </div>
+                
+                <div class="inputDiv">
+                  <label for="email" class = "email">Email Address*</label>
+                  <input type="email" id="email" name="email" required placeholder="Insert your email">
+                  <p class="email error"></p>
+                </div>
+                
+                <div class="inputDiv">
+                  <label for="password" class = "password">Password*</label>
+                  <input type="password" id="password" name="password" required placeholder="Insert your password">
+                  <p class="password error"></p>
+                </div>
+                
+            <div class="checkbox__box">
+                <input type="checkbox"  class="check__box" name="check" required style = color:#FF7500>
+                <label for="myCheckbox" class="input__txt">Agree to Terms and Conditions</label>
+            </div>
+              <div class="submit">
+                <input type="submit" value="Sign Up" class="input__submit">
+              </div>
+              <div class="hr__bar">
+                <div class="line"></div>
+                <p>Or</p>
+                <div class="line"></div>
+            </div>
+
+            <div class="buttons">
+              <button class="button" id="quote-btn"><img src=/images/google.png alt="" class="btn__image">Google</button>
+              <button class="button" id="learn-btn"><img src="/images/facebook.png" alt="" class="btn__image">Facebook</button>
+            </div>
+          </form >
+  </div>
+</body>
+<script>
+const form = document.querySelector("form");
+
+const usernameError = document.querySelector(".name.error");
+const emailError = document.querySelector(".email.error");
+const passwordError = document.querySelector(".password.error");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  //reset errors:
+  usernameError.textContent = "";
+  emailError.textContent = "";
+  passwordError.textContent = "";
+
+  //get values
+  const username = form.username.value;
+  const email = form.email.value;
+  const password = form.password.value;
+
+  try {
+    const res = await fetch("/signup", {
+      method: "POST",
+      body: JSON.stringify({ username, email, password }),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    const data = await res.json();
+    if (data.errors) {
+      usernameError.textContent = data.errors.username;
+      emailError.textContent = data.errors.email;
+      passwordError.textContent = data.errors.password;
+    }
+    if (data.user) {
+      location.assign("/");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+});
+</script>
+</html>

@@ -1,0 +1,184 @@
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    max-height: 100vh;
+    font-family: 'Montserrat', serif;
+  }
+
+  .header__container {
+    height: 13vh;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 20px;
+    border-bottom: 2px solid #FF7500;
+    margin-bottom: 30px;
+  }
+
+  .hotel__logo {
+    width: 80px;
+    height: 80px;
+  }
+
+  .btn {
+    width: 10em;
+    height: 2em;
+    font-family: 'Montserrat' serif;
+    background: #FF7500;
+    color: white;
+    border-radius: 5px;
+    font-size: 20px;
+    border: none;
+    margin-right: 100px;
+    cursor: pointer;
+  }
+
+  .title {
+    text-align: center;
+    margin: 30px 0;
+  }
+
+  .all {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+
+  .form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 450px;
+  }
+  label {
+    font-family: 'Montserrat', serif;
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  .inputDiv{
+    max-width: 500px;
+    margin-bottom: 30px;
+  }
+  .error{
+    margin: 5px 0;
+    position: absolute;
+    height: 30px;
+    color: red;
+  }  
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+    font-family: 'Montserrat', serif;
+  }
+
+  .username {
+    font-family: 'Montserrat', serif;
+    margin-right: 300px;
+  }
+
+  .email {
+    font-family: 'Montserrat', serif;
+    margin-right: 275px;
+  }
+
+  .password {
+    font-family: 'Montserrat', serif;
+    margin-right: 315px;
+  }
+  
+  input[type="submit"] {
+    background-color: #FF7500;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 5px;
+    width: 405px;
+    height: 45px;
+    font-size: 20px;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #FF7500;
+  }
+.checkbox__box{
+    display: flex;
+    position: relative;
+    right: 80px;
+    gap: 10px;
+}
+
+.checkbox__box{
+  position: relative;
+  bottom: 4px;
+}
+
+.input__txt {
+  font-size: 14px;
+  position: relative;
+  top: 4px;
+}
+
+.submit {
+  position: relative;
+  top: 10px;
+}
+
+.hr__bar {
+  display: flex;
+  position: relative;
+  top: 1em;
+  /* padding: 10px; */
+  margin: 10px;
+}
+
+.line {
+  border-bottom: 3px solid rgba(0, 0, 0, 0.5);;
+  width: 11em;
+  position: relative;
+  bottom: 10px;
+  margin: 0 15px;
+}
+
+.buttons {
+  position: relative;
+  top: 0.5em;
+}
+
+.button {
+  cursor: pointer;
+  width: 85px;
+  height: 28px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 28px;
+  text-align: center;
+  letter-spacing: 0.2px;
+  color: #0D5C63;
+  width: 187px;
+  height: 48px;
+  border-radius: 3px;
+  background: none;
+  margin-top: 20px;
+  margin: 15px;
+  border: 1px solid #FF7500;
+}
+
+.btn__image {
+  position: relative;
+  top: 5px;
+  right: 5px;
+}

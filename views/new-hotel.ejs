@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/admin/hotel/<%= hotel.id %>" method="POST" enctype="multipart/form-data">
+        <div>
+            <label for="name">Hotel Name: </label>
+
+            <input type="text" value="<%= hotel.name %>" name="name" >    
+        </div>
+        <div>
+            <label for="rating">Rating: </label>
+            <input type="number" name="rating"  value="<%= hotel.rating %>">    
+        </div>
+        <div>
+            <label for="price_per_night">Price per night: </label>
+            <input type="number" name="price_per_night" value="<%= hotel.price_per_night %>">    
+        </div>
+        <div>
+            <label for="location">Location</label>
+            <input type="text" name="location" value="<%= hotel.location %>">    
+        </div>
+        <div>
+            <label for="hotel_img">Hotel Main Image: </label>
+            <input type="file" name="hotel_img" >    
+        </div>
+
+        <button type="submit">Create</button>
+    </form>
+</body>
+</html>
