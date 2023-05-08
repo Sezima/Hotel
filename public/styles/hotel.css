@@ -212,3 +212,190 @@ nav{
   color: #fff;
   cursor: pointer;
 }
+
+
+  /* styles for the modal overlay */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+
+  /* styles for the modal content */
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+  }
+
+  /* styles for the form and status message */
+  /* form,
+  #payment-status {
+    margin-bottom: 10px;
+  } */
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  label {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: left;
+  }
+
+  input {
+    height: 30px;
+    width: 300px;
+    margin: 5px 0;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+  button[type="submit"] {
+    height: 40px;
+    width: 150px;
+    margin-top: 20px;
+    background-color: #ff7500;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  #close-modal {
+    height: 40px;
+    width: 150px;
+    margin-top: 20px;
+    background-color: white;
+    color: #ff7500;
+    font-size: 20px;
+    font-weight: bold;
+    border: 1px solid #ff7500;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  * {
+    box-sizing: border-box;
+  }
+
+  button[type="submit"]:hover {
+    background-color: hsl(35, 100%, 70%);
+  }
+  .heading-text::before {
+    content: url(/images/Vector.png);
+    height: 5px;
+    width: 10px;
+    margin-right: 30px;
+    margin-bottom: 25px;
+  }
+  .heading-text {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+  h3 {
+    color: #ff7500;
+    margin-right: 530px;
+    font-size: larger;
+  }
+  .red {
+    color: red;
+  }
+  .row-inputs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    column-gap: 80px;
+  }
+
+  .cards {
+    font-size: 17px;
+    color: #ff7500;
+    margin-top: 7px;
+    margin-right: 130px;
+  }
+
+  .cards-img {
+    row-gap: 30px;
+    margin-right: 10px;
+  }
+
+  .row-wrapper {
+    background-color: rgba(255, 224, 197, 0.61);
+    display: flex;
+    flex-direction: row;
+    column-gap: 220px;
+  }
+  .card-number {
+    width: 100%;
+  }
+  .full-width {
+    width: 97%;
+  }
+  .description {
+    font-family: "Montserrat";
+    font-size: 10px;
+  }
+  .btns {
+    display: flex;
+    flex-direction: row;
+    column-gap: 50px;
+    margin-bottom: 20px;
+  }
+  #payment-status {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    color: #ff7500;
+  }
+
+  .hidden{
+    display: none;
+  }
+
+  #popup {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    width: 50vw;
+    height: 50px;
+    text-align: center;
+    padding-top: 10px;
+    box-sizing: border-box; 
+    
+    background-color: red;
+    color: white;
+    border-radius: 0 0 10px 10px;
+    font-family: 'Montserrat', sans-serif;
+    transition: 1s;
+  }
+  #popup p {
+    font-size: 20px;
+    font-weight: bold;
+  }

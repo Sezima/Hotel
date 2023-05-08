@@ -15,7 +15,10 @@ const authRoutes = require("./routes/authRoutes")
 const adminRoutes = require("./routes/adminRoutes")
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
-
+const stripe = require("stripe")(
+    "sk_test_51N45fEJBG4BmPRviMpVAXQig3nekiIeJqUBPymKAv5K9aRGcvEfbof5T8m3OcTGedlrlwoWH4aKsFAgbi2o8CkrD00iZe8Bg5S"
+  );
+  
 const options = {
   definition: {
     openapi: '3.0.0',
@@ -70,6 +73,36 @@ app.get("/hotel/:id", checkUser, async(req, res) => {
         res.redirect("/")
     }
 })
+
+app.post("/charge", async (req, res) => {
+    try {
+      let { cardNumber, cardExpiry, cardCVC, cardName, amount } = req.body;
+  
+      const token = await stripe.tokens.create({
+        card: {
+          number: cardNumber,
+          exp_month: cardExpiry.split("/")[0],
+          exp_year: cardExpiry.split("/")[1],
+          cvc: cardCVC,
+          name: cardName,
+        },
+      });
+  
+      const charge = await stripe.charges.create({
+        amount: amount * 100,
+        currency: "usd",
+        source: token.id,
+        description: `Charge for ${cardName}`,
+      });
+
+      // res.redirect("/")
+      res.send({ status: "succeeded" });
+    } catch (error) {
+      console.error(error);
+      res.send({ status: "failed" });
+    }
+    
+  });
 
 app.listen(3000, () => {
     console.log("listening on 3000")
