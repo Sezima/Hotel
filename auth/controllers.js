@@ -15,12 +15,10 @@ const handleErrors = (err) => {
   console.log(err)
   let errors = { username: "", email: "", password: "" };
 
-  // incorrect email
   if (err.message === "incorrect email") {
     errors.email = "That email is not registered";
   }
 
-  // incorrect password
   if (err.message === "incorrect password") {
     errors.password = "That password is incorrect";
   }
@@ -28,7 +26,6 @@ const handleErrors = (err) => {
   if(err.message === "User validation failed: password: Minimum password length is 6 characters"){
     errors.password = "Minimum password length is 6 characters"
   }
-  //duplicate error code
 
   if(err.message === "User validation failed: email: Please enter a valid email"){
     errors.email = "Please enter a valid email"
